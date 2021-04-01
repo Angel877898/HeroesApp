@@ -10,17 +10,16 @@ export const SearchScreen = ({history}) => {
     const location = useLocation()
     const {q = ''} = queryString.parse(location.search)
 
-    
     const [{heroeValue}, handleInputChange] = useForm({
         heroeValue: q
     })
 
-    
     const handleSubmit = (e) => {
         e.preventDefault()
         history.push(`?q=${heroeValue}`)
         
     }
+
     const heroesFiltered = useMemo(() => getHeroesByName(q), [q])
 
     return (
@@ -38,9 +37,11 @@ export const SearchScreen = ({history}) => {
                     </form>
 
                 </div>
+
                 <div className="col-7">
                     <h4>Results</h4>
                     <hr/>
+                    
                     { (q === '') 
                         && <div className="alert alert-info">
                              Search a hero
